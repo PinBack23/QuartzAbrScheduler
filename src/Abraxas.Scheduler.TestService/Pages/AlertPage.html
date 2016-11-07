@@ -1,0 +1,34 @@
+﻿<div class="row" style="margin-top: 10px">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Alerts
+           
+            </div>
+            <div class="panel-body">
+                <div class="table ">
+                    <table id="alertTable" class="table table-hover" data-ng-show="data.tableReady">
+                        <thead>
+                            <tr>
+                                <th>Jobname</th>
+                                <th>Gruppe</th>
+                                <th>Typ</th>
+                                <th>Message</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="alert in data.alerts">
+                                <td>{{alert.FailJob.Name}}</td>
+                                <td>{{alert.FailJob.Group}}</td>
+                                <td>{{alert.FailJob.TypeName}}</td>
+                                <td>{{alert.ErrorMessage}}</td>
+                                <td>{{alert.TimeStamp | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

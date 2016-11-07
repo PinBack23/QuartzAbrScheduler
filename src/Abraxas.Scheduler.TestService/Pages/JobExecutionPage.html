@@ -1,0 +1,66 @@
+﻿<div data-ng-show="!data.jobresult" class="row" style="margin-top: 10px">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Job Ausführungen
+            </div>
+            <div class="panel-body">
+                <div class="table ">
+                    <table id="jobExecutionTable" class="table table-hover" data-ng-show="data.tableReady">
+                        <thead>
+                            <tr>
+                                <th>Erfolgreich</th>
+                                <th>Jobname</th>
+                                <th>Gruppe</th>
+                                <th>Typ</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="jobExecution in data.jobExecutions">
+                                <td>
+                                    <button type="button" class="btn btn-circle btn-success"
+                                        data-ng-click="zeigeResult(jobExecution)" data-ng-show="jobExecution.Successfully">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-circle btn-danger"
+                                        data-ng-click="zeigeFehler(jobExecution)" data-ng-show="!jobExecution.Successfully">
+                                        <i class="fa fa-exclamation"></i>
+                                    </button>
+                                </td>
+                                <td>{{jobExecution.Job.Name}}</td>
+                                <td>{{jobExecution.Job.Group}}</td>
+                                <td>{{jobExecution.Job.TypeName}}</td>
+                                <td>{{jobExecution.TimeStamp | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-ng-show="data.jobresult" style="margin-top: 10px">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-ng-click="ladeJobExecutions()">Zurück</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Result as string
+               
+                </div>
+                <div class="panel-body">
+                    <pre>{{data.jobresult}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

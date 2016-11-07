@@ -1,0 +1,65 @@
+﻿<div class="row" style="margin-top: 10px" data-ng-show="!data.logcontent">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Logs
+           
+            </div>
+            <div class="panel-body">
+                <div class="table ">
+                    <table id="logTable" class="table table-hover" data-ng-show="data.tableReady">
+                        <thead>
+                            <tr>
+                                <th>Anzeigen</th>
+                                <th>Dateiname</th>
+                                <th>LastModification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="logfile in data.logfiles">
+                                <td>
+                                    <button type="button" class="btn btn-circle btn-primary"
+                                        data-ng-click="ladeContent(logfile)">
+                                        <i class="fa fa-binoculars"></i>
+                                    </button>
+                                </td>
+                                <td>{{logfile.FileName}}</td>
+                                <td>{{logfile.LastModification | date:'dd.MM.yyyy HH:mm:ss'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-ng-show="data.logcontent" style="margin-top: 10px">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" data-ng-click="ladeLogs()">Zurück</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" data-ng-click="downloadLog()">Download Log</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Logcontent
+           
+                </div>
+                <div class="panel-body">
+                    <pre>{{data.logcontent}}</pre>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

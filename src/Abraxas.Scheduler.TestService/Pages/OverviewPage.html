@@ -1,0 +1,265 @@
+﻿<div class="row" style="margin-top: 10px">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Steuerung                           
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <h4>Power</h4>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h4>Upload Jobs</h4>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h4>Reload Jobs</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-center">
+                        <div class="center-block">
+                            <button type="button" class="btn btn-circle btn-xl"
+                                data-ng-class="{'btn-danger': !data.schedulerStarted, 'btn-success': data.schedulerStarted}"
+                                data-ng-click="toggleScheduler()">
+                                <i class="fa fa-power-off"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="center-block">
+                            <button type="button" class="btn btn-circle btn-xl btn-primary"
+                                data-toggle="modal" data-target="#uploadJobs">
+                                <i class="fa fa-upload"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <div class="center-block">
+                            <button type="button" class="btn btn-circle btn-xl btn-primary"
+                                data-ng-click="reloadJobs()">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="uploadJobs" tabindex="-1" role="dialog" aria-labelledby="uploadJobTitle" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="uploadJobTitle">Jobs hochladen</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="jobUpload">Datei</label>
+                                    <input id="jobUpload" name="jobUpload" type="file" class="form-control" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Abbruch</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-click="uploadJobs()">Übertragen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" data-ng-bind="data.jobcount"></div>
+                        <div>Jobs</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-ng-click="ladeJobs()">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" data-ng-bind="data.triggercount"></div>
+                        <div>Trigger</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-ng-click="ladeTiggers()">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-check fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" data-ng-bind="data.jobcountexecutionok"></div>
+                        <div>Erfolgreiche Jobs</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-ui-sref="jobexecution">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-exclamation fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" data-ng-bind="data.jobcountexecutionfailed"></div>
+                        <div>Fehlgeschlage Jobs</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-ui-sref="jobexecution">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row" data-ng-show="data.jobs">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Jobs
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordionJob">
+                    <div class="panel panel-default" data-ng-repeat="job in data.jobs">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordionJob" data-ng-href="#collapseJob{{$index}}">{{job.Name}}</a>
+                            </h4>
+                        </div>
+                        <div id="collapseJob{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Gruppe: {{job.Group}}</li>
+                                    <li>Beschreibung: {{job.Description}}</li>
+                                    <li>Typ: {{job.TypeName}}</li>
+                                    <li>Assembly: {{job.AssemblyName}}</li>
+                                </ul>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Pause/Start</th>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="trigger in job.TriggerList">
+                                            <td>
+                                                <button type="button" class="btn btn-circle btn-success"
+                                                    data-ng-click="toggleTrigger(trigger)" >
+                                                    <i class="fa fa-refresh"></i>
+                                                </button>
+                                            </td>
+                                            <td>{{trigger.Name}}</td>
+                                            <td>{{trigger.State}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="btn btn-success" data-ng-click="toggleJob(job)">Pause/Start</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTrigger" data-ng-click="prepareTriggerForJob(job)">Add Trigger</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="addTrigger" tabindex="-1" role="dialog" aria-labelledby="uploadJobTitle" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title" id="H1">Trigger hinzufügen</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="newtriggername">Cron-Expression</label>
+                                    <input id="newtriggername" name="newtriggername" type="text" class="form-control" data-ng-model="data.newTriggername" />
+                                    <label for="newcronexpression">Cron-Expression</label>
+                                    <input id="newcronexpression" name="newcronexpression" type="text" class="form-control" data-ng-model="data.newNewcronexpression" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Abbruch</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-ng-click="createNewTrigger()">Übertragen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" data-ng-show="data.triggers">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Trigger
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordionTrigger">
+                    <div class="panel panel-default" data-ng-repeat="trigger in data.triggers">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordionTrigger" data-ng-href="#collapseTrigger{{$index}}">{{trigger.Name}}</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTrigger{{$index}}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Gruppe: {{trigger.Group}}</li>
+                                    <li>Typ: {{trigger.TypeName}}</li>
+                                    <li>Status: {{trigger.State}}</li>
+                                    <li>CronExpression (bei CronTrigger): {{trigger.CronExpression}}</li>
+                                    <li>NextFireTime: {{trigger.NextFireTime | date:'dd.MM.yyyy HH:mm:ss'}}</li>
+                                    <li>PreviousFireTime: {{trigger.PreviousFireTime | date:'dd.MM.yyyy HH:mm:ss'}}</li>
+                                </ul>
+                                <button type="button" class="btn btn-success" data-ng-click="toggleTrigger(trigger)">Pause/Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

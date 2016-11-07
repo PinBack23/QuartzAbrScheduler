@@ -1,0 +1,113 @@
+﻿<div class="row" style="margin-top: 10px" data-ng-show="!data.edit">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Job Relations
+           
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Editieren</th>
+                                <th>Jobname</th>
+                                <th>Gruppe</th>
+                                <th>Typ</th>
+                                <th>CronExpression</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="relation in data.relations">
+                                <td>
+                                    <button type="button" class="btn btn-circle btn-primary"
+                                        data-ng-click="editJobRelation(relation)">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                <td>{{relation.JobName}}</td>
+                                <td>{{relation.Group}}</td>
+                                <td>{{relation.Type}}</td>
+                                <td>{{relation.CronExpression}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px" data-ng-show="data.edit">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Job Relation bearbeiten
+           
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Typ</label>
+                                <input class="form-control" data-ng-model="data.edit.Type" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" data-ng-model="data.edit.JobName" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Gruppe</label>
+                                <input class="form-control" data-ng-model="data.edit.Group" disabled="disabled" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>CronExpression</label>
+                                <input class="form-control" data-ng-model="data.edit.CronExpression" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Konfiguration</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Property</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="field in data.edit.config">
+                                            <td>{{field.Property}}</td>
+                                            <td>
+                                                <input class="form-control" data-ng-model="field.Value" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" data-ng-click="saveRelation()" data-ng-disabled="!canSave()">Speichern</button>
+                            <button type="button" class="btn btn-primary" data-ng-click="deleteRelation()">Löschen</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" data-ng-click="cancelEditJob()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
